@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="33dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginVertical="6dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/ll_day_schedule"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="30sp"
+                android:layout_marginStart="33dp"
+                android:textColor="@color/black"
+                android:layout_height="match_parent"
+                android:text="Hari"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="left"
+                android:id="@+id/tv_day"
+                android:layout_marginStart="33dp"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:layout_height="match_parent"
+                android:text="Senin"/>
+            <Button
+                android:layout_width="150dp"
+                android:layout_marginVertical="12dp"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/img"
+                android:layout_height="36dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
