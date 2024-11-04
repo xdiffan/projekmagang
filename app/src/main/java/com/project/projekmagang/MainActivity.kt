@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentStatePagerAdapter
@@ -40,7 +41,13 @@ class MainActivity : AppCompatActivity() {
 
         viewPager2 = binding.viewPager2
         tabLayout = binding.tabLayout
+        viewPager2.isFocusable = true
+        viewPager2.isFocusableInTouchMode = true
+        viewPager2.requestFocus()
 
+        tabLayout.isFocusable = true
+        tabLayout.isFocusableInTouchMode = true
+        tabLayout.requestFocus()
         setupViewPager()
     }
 
