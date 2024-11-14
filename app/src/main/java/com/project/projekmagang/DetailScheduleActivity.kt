@@ -26,7 +26,6 @@ class DetailScheduleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_schedule)
 
-        // Mendapatkan ID hari dari intent
         scheduleday=intent.getStringExtra("day")
         dayId = intent.getStringExtra("dayId")
         val textView = findViewById<TextView>(R.id.tv_day_detail)
@@ -34,7 +33,6 @@ class DetailScheduleActivity : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
 
-        // Mengatur RecyclerView dan adapter dengan listener untuk klik item
         adapter = DetailScheduleAdapter(listDetailSchedule) { selectedCourse ->
             showConfirmationDialog(selectedCourse)
         }
@@ -43,7 +41,6 @@ class DetailScheduleActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
-        // Panggil metode loadCoursesFromDatabase
         loadCoursesFromDatabase()
     }
 

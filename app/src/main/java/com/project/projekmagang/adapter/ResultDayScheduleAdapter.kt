@@ -6,42 +6,40 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.compose.ui.graphics.Color
-import androidx.leanback.widget.ImageCardView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.projekmagang.R
 import com.project.projekmagang.model.MyScheduleDay
 
-class ScheduleDayAdapter(
-    private var listScheduleDay: List<MyScheduleDay>,
+class ResultDayScheduleAdapter(
+    private var listResultSchedule: List<MyScheduleDay>,
     private val onItemClick: (MyScheduleDay, String) -> Unit
-) : RecyclerView.Adapter<ScheduleDayAdapter.ScheduleDayViewHolder>() {
+) : RecyclerView.Adapter<ResultDayScheduleAdapter.ResultDayScheduleViewHolder>() {
 
-    fun updateData(newScheduleDays: List<MyScheduleDay>) {
-        listScheduleDay = newScheduleDays
+    fun updateData(newResultScheduleDays: List<MyScheduleDay>) {
+        listResultSchedule = newResultScheduleDays
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleDayViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.my_schedule, parent, false)
-        return ScheduleDayViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultDayScheduleViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.result_day_schedule, parent, false)
+        return ResultDayScheduleViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ScheduleDayViewHolder, position: Int) {
-        val scheduleDay = listScheduleDay[position]
-        holder.bind(scheduleDay)
+    override fun onBindViewHolder(holder: ResultDayScheduleViewHolder, position: Int) {
+        val resultScheduleDay = listResultSchedule[position]
+        holder.bind(resultScheduleDay)
 
-        val dayId = scheduleDay.id
-
+        val resultDayId = resultScheduleDay.id
         holder.itemView.setOnClickListener {
-            onItemClick(scheduleDay, dayId)
+            onItemClick(resultScheduleDay, resultDayId)
         }
 
-        holder.itemView.setOnFocusChangeListener { view, hasFocus ->
+        // Fokus dan scaling saat item mendapatkan fokus
+        holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 view.scaleX = 1.2f
                 view.scaleY = 1.2f
-                view.elevation = 3f
+                view.elevation = 5f
             } else {
                 view.scaleX = 1.0f
                 view.scaleY = 1.0f
@@ -49,6 +47,7 @@ class ScheduleDayAdapter(
             }
         }
 
+        // Menangani navigasi D-Pad
         holder.itemView.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN) {
                 when (keyCode) {
@@ -60,7 +59,7 @@ class ScheduleDayAdapter(
                         return@setOnKeyListener true
                     }
                     KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                        if (position < listScheduleDay.size - 1) {
+                        if (position < listResultSchedule.size - 1) {
                             holder.itemView.requestFocus()
                             (holder.itemView.parent as RecyclerView).findViewHolderForAdapterPosition(position + 1)?.itemView?.requestFocus()
                         }
@@ -72,17 +71,14 @@ class ScheduleDayAdapter(
         }
     }
 
-    override fun getItemCount(): Int = listScheduleDay.size
+    override fun getItemCount(): Int = listResultSchedule.size
 
-    class ScheduleDayViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(scheduleDay: MyScheduleDay) {
-            val tvDay = itemView.findViewById<TextView>(R.id.tv_day)
-            tvDay.text = scheduleDay.day
-
-            // Make the item focusable in both touch and keyboard navigation modes
+    class ResultDayScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(resultScheduleDay: MyScheduleDay) {
+            val tvResultDay = itemView.findViewById<TextView>(R.id.tv_result_day)
+            tvResultDay.text = resultScheduleDay.day
             itemView.isFocusable = true
             itemView.isFocusableInTouchMode = true
         }
     }
 }
-

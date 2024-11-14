@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:focusableInTouchMode="true"
+    android:background="@color/black"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
@@ -13,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="42dp"
         app:cardCornerRadius="33dp"
-        app:cardBackgroundColor="@color/lightblue"
-        android:focusable="true">
+        app:cardBackgroundColor="@color/lightblue">
 
         <LinearLayout
             android:id="@+id/ll_main"
@@ -31,7 +31,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginBottom="20dp"
-                android:focusable="true"
                 android:text="Jadwal Pelajaran"
                 android:textColor="@color/black"
                 android:textSize="54sp" />
@@ -39,6 +38,7 @@
                 android:id="@+id/create_button"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
+                android:nextFocusDown="@id/next_button"
                 android:layout_gravity="right"
                 android:background="@drawable/img_3"
                 android:focusable="true" />
@@ -46,6 +46,7 @@
                 android:id="@+id/next_button"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
+                android:nextFocusUp="@id/create_button"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="right"
                 android:background="@drawable/img_1"

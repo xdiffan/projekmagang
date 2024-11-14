@@ -19,13 +19,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projekmagang">
         <activity
-            android:name=".ResultSchedule"
+            android:name=".DetailExtraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExtraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailResultSchedule"
+            android:exported="false" />
+        <activity
+            android:name=".ResultDaySchedule"
             android:exported="false" />
         <activity
             android:name=".DetailScheduleActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.theme.Home"
+            android:name=".Day"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

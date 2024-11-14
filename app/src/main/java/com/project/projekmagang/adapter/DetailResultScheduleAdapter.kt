@@ -7,12 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.projekmagang.R
 import com.project.projekmagang.model.MyDetailSchedule
-import com.project.projekmagang.model.MyScheduleDay
 
-class DetailScheduleAdapter(
-    private val listDetailSchedule: ArrayList<MyDetailSchedule>,
-    private val onItemClick: (MyDetailSchedule) -> Unit
-) : RecyclerView.Adapter<DetailScheduleAdapter.ViewHolder>() {
+class DetailResultScheduleAdapter(
+    private val listDetailSchedule: ArrayList<MyDetailSchedule>
+) : RecyclerView.Adapter<DetailResultScheduleAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val course = itemView.findViewById<TextView>(R.id.tv_course)
@@ -28,9 +26,12 @@ class DetailScheduleAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listDetailSchedule[position]
         holder.course.text = item.course
+    }
 
-        holder.itemView.setOnClickListener {
-            onItemClick(item)
-        }
+    // Tambahkan method untuk memperbarui data
+    fun updateData(newDetailSchedules: List<MyDetailSchedule>) {
+        listDetailSchedule.clear()
+        listDetailSchedule.addAll(newDetailSchedules)
+        notifyDataSetChanged()
     }
 }
