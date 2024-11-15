@@ -40,7 +40,9 @@ class DetailScheduleActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_detail_schedule)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-
+        recyclerView.post {
+            recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.requestFocus()
+        }
         loadCoursesFromDatabase()
     }
 
@@ -80,7 +82,6 @@ class DetailScheduleActivity : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { querySnapshot ->
                     if (querySnapshot.isEmpty) {
-                        // Course belum ada, simpan ke Firestore
                         val courseData = hashMapOf(
                             "course" to course.course,
                             "timestamp" to System.currentTimeMillis()
@@ -97,7 +98,6 @@ class DetailScheduleActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Gagal menyimpan course", Toast.LENGTH_SHORT).show()
                             }
                     } else {
-                        // Course sudah ada, beri tahu pengguna
                         Toast.makeText(this, "Course '${course.course}' sudah ada.", Toast.LENGTH_SHORT).show()
                     }
                 }

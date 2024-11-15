@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
+        android:id="@+id/ll_text_choose"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/ll_schedule"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +20,9 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Memilih jadwal untuk hari "
+            android:layout_marginTop="16dp"
+            android:layout_height="match_parent"
+            android:text="Memilih Jadwal Untuk Hari "
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="45sp" />
@@ -30,6 +32,7 @@
             android:textSize="45sp"
             android:id="@+id/tv_day_detail"
             android:textColor="@color/white"
+            android:layout_marginTop="16dp"
             android:layout_height="wrap_content"
             android:text="Senin" />
     </LinearLayout>
@@ -41,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/ll_text_choose">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_schedule"
@@ -62,6 +65,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_detail_schedule"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"

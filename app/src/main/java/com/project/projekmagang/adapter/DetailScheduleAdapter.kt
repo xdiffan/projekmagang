@@ -1,5 +1,6 @@
 package com.project.projekmagang.adapter
 
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,8 @@ class DetailScheduleAdapter(
     private val onItemClick: (MyDetailSchedule) -> Unit
 ) : RecyclerView.Adapter<DetailScheduleAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val course = itemView.findViewById<TextView>(R.id.tv_course)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val course: TextView = itemView.findViewById(R.id.tv_course)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,6 +32,56 @@ class DetailScheduleAdapter(
 
         holder.itemView.setOnClickListener {
             onItemClick(item)
+        }
+
+        holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                view.scaleX = 1.2f
+                view.scaleY = 1.2f
+                view.elevation = 5f
+            } else {
+                view.scaleX = 1.0f
+                view.scaleY = 1.0f
+                view.elevation = 0f
+            }
+        }
+
+        holder.itemView.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                when (keyCode) {
+                    KeyEvent.KEYCODE_DPAD_LEFT -> {
+                        if (position > 0) {
+                            (holder.itemView.parent as RecyclerView)
+                                .findViewHolderForAdapterPosition(position - 1)?.itemView?.requestFocus()
+                        }
+                        return@setOnKeyListener true
+                    }
+                    KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                        if (position < listDetailSchedule.size - 1) {
+                            (holder.itemView.parent as RecyclerView)
+                                .findViewHolderForAdapterPosition(position + 1)?.itemView?.requestFocus()
+                        }
+                        return@setOnKeyListener true
+                    }
+                    KeyEvent.KEYCODE_DPAD_UP -> {
+                        val spanCount = 3
+                        if (position - spanCount >= 0) {
+                            (holder.itemView.parent as RecyclerView)
+                                .findViewHolderForAdapterPosition(position - spanCount)?.itemView?.requestFocus()
+                        }
+                        return@setOnKeyListener true
+                    }
+                    KeyEvent.KEYCODE_DPAD_DOWN -> {
+                        val spanCount = 3
+                        if (position + spanCount < listDetailSchedule.size) {
+                            (holder.itemView.parent as RecyclerView)
+                                .findViewHolderForAdapterPosition(position + spanCount)?.itemView?.requestFocus()
+                        }
+                        return@setOnKeyListener true
+                    }
+                }
+            }
+            false
         }
     }
 }

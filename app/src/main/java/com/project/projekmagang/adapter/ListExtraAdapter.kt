@@ -37,7 +37,6 @@ class ListExtraAdapter(
             onItemClick(extra)
         }
 
-        // Fokus dan scaling saat item mendapatkan fokus
         holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 view.scaleX = 1.2f
@@ -55,7 +54,6 @@ class ListExtraAdapter(
                 when (keyCode) {
                     KeyEvent.KEYCODE_DPAD_LEFT -> {
                         if (position > 0) {
-                            // Minta fokus pada item sebelumnya
                             holder.itemView.requestFocus()
                             (holder.itemView.parent as RecyclerView).findViewHolderForAdapterPosition(position - 1)?.itemView?.requestFocus()
                         }
@@ -63,7 +61,6 @@ class ListExtraAdapter(
                     }
                     KeyEvent.KEYCODE_DPAD_RIGHT -> {
                         if (position < extras.size - 1) {
-                            // Minta fokus pada item berikutnya
                             holder.itemView.requestFocus()
                             (holder.itemView.parent as RecyclerView).findViewHolderForAdapterPosition(position + 1)?.itemView?.requestFocus()
                         }
