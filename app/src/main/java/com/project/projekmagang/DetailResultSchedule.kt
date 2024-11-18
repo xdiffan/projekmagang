@@ -45,7 +45,6 @@ class DetailResultSchedule : AppCompatActivity() {
         adapter = DetailResultScheduleAdapter(arrayListOf())
         recyclerView.adapter = adapter
 
-        // Fokuskan item pertama setelah RecyclerView siap
         recyclerView.post {
             recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.requestFocus()
         }

@@ -60,6 +60,8 @@
                 android:id="@+id/ll_home"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_gravity="center"
                 android:layout_marginVertical="30dp">
 

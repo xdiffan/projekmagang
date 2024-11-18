@@ -34,7 +34,6 @@ class ResultDayScheduleAdapter(
             onItemClick(resultScheduleDay, resultDayId)
         }
 
-        // Fokus dan scaling saat item mendapatkan fokus
         holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 view.scaleX = 1.2f
@@ -47,7 +46,6 @@ class ResultDayScheduleAdapter(
             }
         }
 
-        // Menangani navigasi D-Pad
         holder.itemView.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN) {
                 when (keyCode) {

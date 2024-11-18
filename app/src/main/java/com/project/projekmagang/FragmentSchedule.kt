@@ -21,6 +21,7 @@ class FragmentSchedule : Fragment() {
         val layoutGoToHome: Button = view.findViewById(R.id.create_button)
         val checkButton: Button = view.findViewById(R.id.next_button)
         layoutGoToHome.nextFocusUpId = R.id.tabLayout
+        layoutGoToHome.nextFocusLeftId = R.id.tabLayout
 
 
         layoutGoToHome.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->

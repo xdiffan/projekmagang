@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,7 +23,7 @@ class DetailScheduleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_schedule)
 
-        scheduleday=intent.getStringExtra("day")
+        scheduleday = intent.getStringExtra("day")
         dayId = intent.getStringExtra("dayId")
         val textView = findViewById<TextView>(R.id.tv_day_detail)
         textView.text = "$scheduleday"
@@ -36,17 +33,20 @@ class DetailScheduleActivity : AppCompatActivity() {
         adapter = DetailScheduleAdapter(listDetailSchedule) { selectedCourse ->
             showConfirmationDialog(selectedCourse)
         }
-        val layoutManager = GridLayoutManager(this, 3)
+
         val recyclerView = findViewById<RecyclerView>(R.id.rv_detail_schedule)
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = GridLayoutManager(this, 3)
         recyclerView.adapter = adapter
-        recyclerView.post {
-            recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.requestFocus()
+
+        loadCoursesFromDatabase {
+            // Once data is loaded, request focus for the first item
+            recyclerView.post {
+                recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.requestFocus()
+            }
         }
-        loadCoursesFromDatabase()
     }
 
-    private fun loadCoursesFromDatabase() {
+    private fun loadCoursesFromDatabase(onDataLoaded: () -> Unit) {
         firestore.collection("courses")
             .get()
             .addOnSuccessListener { result ->
@@ -56,6 +56,7 @@ class DetailScheduleActivity : AppCompatActivity() {
                     listDetailSchedule.add(course)
                 }
                 adapter.notifyDataSetChanged()
+                onDataLoaded()  // Callback to set focus after data load
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Error fetching courses", e)
@@ -75,10 +76,9 @@ class DetailScheduleActivity : AppCompatActivity() {
 
     private fun saveCourseToDay(course: MyDetailSchedule) {
         dayId?.let { id ->
-            // Mengecek apakah course sudah ada
             firestore.collection("days").document(id)
                 .collection("courses")
-                .whereEqualTo("course", course.course) // Ganti "course" sesuai dengan field yang ada di Firestore
+                .whereEqualTo("course", course.course)
                 .get()
                 .addOnSuccessListener { querySnapshot ->
                     if (querySnapshot.isEmpty) {
@@ -106,6 +106,4 @@ class DetailScheduleActivity : AppCompatActivity() {
                 }
         }
     }
-
 }
-

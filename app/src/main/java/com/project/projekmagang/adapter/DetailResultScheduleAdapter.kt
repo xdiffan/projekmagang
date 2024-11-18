@@ -28,7 +28,6 @@ class DetailResultScheduleAdapter(
         holder.course.text = item.course
     }
 
-    // Tambahkan method untuk memperbarui data
     fun updateData(newDetailSchedules: List<MyDetailSchedule>) {
         listDetailSchedule.clear()
         listDetailSchedule.addAll(newDetailSchedules)

@@ -79,7 +79,6 @@ class ScheduleDayAdapter(
             val tvDay = itemView.findViewById<TextView>(R.id.tv_day)
             tvDay.text = scheduleDay.day
 
-            // Make the item focusable in both touch and keyboard navigation modes
             itemView.isFocusable = true
             itemView.isFocusableInTouchMode = true
         }

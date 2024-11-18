@@ -33,13 +33,20 @@
                     android:layout_height="400dp"
                     android:src="@drawable/img_5"/>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/tv_detail_extra"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Sepak Bola adalah olahraga yang dimainkan oleh dua tim yang masing-masing terdiri dari sebelas pemain. Tujuannya adalah mencetak gol dengan memasukkan bola ke gawang lawan."
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:ellipsize="none"
+                android:singleLine="false"
+                android:scrollHorizontally="false"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_detail_extra"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="Sepak Bola adalah"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
