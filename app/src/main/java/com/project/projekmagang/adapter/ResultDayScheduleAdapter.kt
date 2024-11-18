@@ -4,6 +4,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -34,15 +35,17 @@ class ResultDayScheduleAdapter(
             onItemClick(resultScheduleDay, resultDayId)
         }
 
-        holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
+        holder.itemView.setOnFocusChangeListener() { view, hasFocus ->
+
+            val btnResultDay=view.findViewById<Button>(R.id.btn_result_day)
             if (hasFocus) {
-                view.scaleX = 1.2f
-                view.scaleY = 1.2f
-                view.elevation = 5f
+                btnResultDay.scaleX = 1.3f
+                btnResultDay.scaleY = 1.3f
+                btnResultDay.elevation = 3.3f
             } else {
-                view.scaleX = 1.0f
-                view.scaleY = 1.0f
-                view.elevation = 0f
+                btnResultDay.scaleX = 1.0f
+                btnResultDay.scaleY = 1.0f
+                btnResultDay.elevation = 0f
             }
         }
 

@@ -38,7 +38,7 @@ class DetailResultSchedule : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_detail_schedule)
-        recyclerView.layoutManager = GridLayoutManager(this, 4)
+        recyclerView.layoutManager = GridLayoutManager(this, 3)
         recyclerView.isFocusable = true
         recyclerView.isFocusableInTouchMode = true
 

@@ -4,6 +4,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.compose.ui.graphics.Color
@@ -38,14 +39,16 @@ class ScheduleDayAdapter(
         }
 
         holder.itemView.setOnFocusChangeListener { view, hasFocus ->
+
+            val btnDay=view.findViewById<Button>(R.id.btn_day)
             if (hasFocus) {
-                view.scaleX = 1.2f
-                view.scaleY = 1.2f
-                view.elevation = 3f
+                btnDay.scaleX = 1.3f
+                btnDay.scaleY = 1.3f
+                btnDay.elevation = 3.3f
             } else {
-                view.scaleX = 1.0f
-                view.scaleY = 1.0f
-                view.elevation = 0f
+                btnDay.scaleX = 1.0f
+                btnDay.scaleY = 1.0f
+                btnDay.elevation = 0f
             }
         }
 

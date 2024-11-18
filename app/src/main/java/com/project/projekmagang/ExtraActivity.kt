@@ -55,15 +55,12 @@ class ExtraActivity : AppCompatActivity() {
                 }
                 adapter.notifyDataSetChanged()
 
-                // Meminta fokus pada item pertama setelah data diperbarui
                 recyclerView.post {
                     if (extraList.isNotEmpty()) {
                         recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.requestFocus()
                     }
                 }
             }
-            .addOnFailureListener { e ->
-                // Tangani kesalahan jika diperlukan
-            }
+
     }
 }

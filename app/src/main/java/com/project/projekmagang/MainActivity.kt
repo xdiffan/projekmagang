@@ -9,6 +9,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.project.projekmagang.adapter.VPAdapter
 import com.project.projekmagang.databinding.ActivityMainBinding
+import com.project.projekmagang.fragment.FragmentExtra
+import com.project.projekmagang.fragment.FragmentSchedule
 
 class MainActivity : AppCompatActivity() {
 

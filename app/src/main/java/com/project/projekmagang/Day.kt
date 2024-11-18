@@ -30,10 +30,8 @@ class Day : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
 
-        progressBar = findViewById(R.id.pb_loading)
-        errorTextView = findViewById(R.id.tv_error)
+
         recyclerView = findViewById(R.id.rv_schedule)
-        layoutState = findViewById(R.id.layout_state)
 
         setupRecyclerView()
         loadDaysFromDatabase()
@@ -51,11 +49,6 @@ class Day : AppCompatActivity() {
     }
 
     private fun loadDaysFromDatabase() {
-        layoutState.visibility = View.VISIBLE
-        progressBar.visibility = View.VISIBLE
-        recyclerView.visibility = View.GONE
-        errorTextView.visibility = View.GONE
-
         firestore.collection("days").get()
             .addOnSuccessListener { result ->
                 val listScheduleDay = result.map { document ->
@@ -65,8 +58,6 @@ class Day : AppCompatActivity() {
                 }
                 adapter.updateData(listScheduleDay)
 
-                layoutState.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
 
                 if (listScheduleDay.isNotEmpty()) {
                     val firstItemPosition = 0
@@ -82,13 +73,6 @@ class Day : AppCompatActivity() {
                 if (listScheduleDay.isEmpty()) {
                     errorTextView.visibility = View.VISIBLE
                 }
-            }
-            .addOnFailureListener { e ->
-                layoutState.visibility = View.GONE
-                recyclerView.visibility = View.GONE
-                errorTextView.visibility = View.VISIBLE
-                errorTextView.text = "Error fetching data: ${e.message}"
-                Log.e("Firestore", "Error fetching days", e)
             }
     }
 }

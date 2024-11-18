@@ -36,9 +36,9 @@ class DetailScheduleAdapter(
 
         holder.itemView.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
-                view.scaleX = 1.4f
-                view.scaleY = 1.4f
-                view.elevation = 5f
+                view.scaleX = 1.18f
+                view.scaleY = 1.18f
+                view.elevation = 2.9f
             } else {
                 view.scaleX = 1.0f
                 view.scaleY = 1.0f

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "719726878649",
+    "project_id": "schooltv-b22a8",
+    "storage_bucket": "schooltv-b22a8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719726878649:android:c7d8fe1ed582332d11e068",
+        "android_client_info": {
+          "package_name": "com.project.projekmagang"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2Y0KZ4Y1c5hTfKbbSekaO0G0pezYR_V4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

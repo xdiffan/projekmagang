@@ -41,7 +41,7 @@ class ListExtraAdapter(
             if (hasFocus) {
                 view.scaleX = 1.2f
                 view.scaleY = 1.2f
-                view.elevation = 5f
+                view.elevation = 4f
             } else {
                 view.scaleX = 1.0f
                 view.scaleY = 1.0f

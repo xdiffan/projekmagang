@@ -15,7 +15,6 @@
         android:defaultFocusHighlightEnabled="true"
         app:tabTextColor="@color/white"
         app:tabIndicatorHeight="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewPager2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -38,6 +37,7 @@
         android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

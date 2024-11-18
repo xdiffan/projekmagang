@@ -41,6 +41,7 @@
                 android:text="Senin"/>
             <Button
                 android:layout_width="150dp"
+                android:id="@+id/btn_day"
                 android:layout_marginVertical="12dp"
                 android:layout_marginHorizontal="30dp"
                 android:background="@drawable/img"

@@ -69,8 +69,8 @@
                     android:id="@+id/rv_detail_schedule"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="16dp" />
 

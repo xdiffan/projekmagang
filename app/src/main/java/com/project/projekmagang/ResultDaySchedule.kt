@@ -17,20 +17,21 @@ import com.project.projekmagang.model.MyScheduleDay
 class ResultDaySchedule : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var adapter: ResultDayScheduleAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result_day_schedule)
 
         firestore = FirebaseFirestore.getInstance()
+        recyclerView = findViewById(R.id.rv_schedule)
+
         setupRecyclerView()
         loadDaysFromDatabase()
     }
 
     private fun setupRecyclerView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_schedule)
         recyclerView.layoutManager = GridLayoutManager(this, 3)
-
         adapter = ResultDayScheduleAdapter(arrayListOf()) { scheduleDay, dayId ->
             val intent = Intent(this, DetailResultSchedule::class.java)
             intent.putExtra("day", scheduleDay.day)
@@ -48,11 +49,20 @@ class ResultDaySchedule : AppCompatActivity() {
                     scheduleDay.id = document.id
                     scheduleDay
                 }
-                // Update data di adapter
                 adapter.updateData(listScheduleDay)
+
+                if (listScheduleDay.isNotEmpty()) {
+                    val firstItemPosition = 0
+                    val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                    layoutManager.scrollToPosition(firstItemPosition)
+
+                    recyclerView.post {
+                        val firstItemView = recyclerView.findViewHolderForAdapterPosition(firstItemPosition)?.itemView
+                        firstItemView?.requestFocus()
+                    }
+                }
             }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Error fetching days", e)
-            }
+
     }
 }
+
